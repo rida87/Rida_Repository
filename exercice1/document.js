@@ -3,7 +3,7 @@ var elements = document.getElementsByTagName("p");
 var length = elements.length;
 for (var i = 0; i < length; i++)
 {
-elements[i].style.color= "red";
+elements[i].style.color= "blue";
 }
 var myLink = document.getElementById("link");
 var myButton = document.getElementById("myButton");
