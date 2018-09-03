@@ -1,0 +1,30 @@
+Ajouter une ligne au tableau via une fction JS<br>
+<html>
+    <table id="myTable" border="1"> <tr>
+        <td>Ligne1 cellule1</td>
+        <td>Ligne1 cellule2</td>
+        </tr>
+        <tr>
+        <td>Ligne2 cellule1</td>
+        <td>Ligne2 cellule2</td>
+        </tr>
+    </table>
+    <br>
+    <br>
+    <button id="insertNewRow" onclick="insertRow()">Ajouter une nouvelle ligne</button>
+
+    <script type="text/javascript">
+        var row = 1;
+
+        function insertRow() {
+            var table = document.getElementById('myTable').insertRow(0);
+            var cell1 = table.insertCell(0);
+            var cell2 = table.insertCell(1);
+            cell1.innerHTML = "Ajout ligne "+row+ "Cellule1";
+            cell2.innerHTML = "Ajout ligne "+row+ "Cellule2";
+
+            row ++;
+        }
+    </script>
+</html>
+
