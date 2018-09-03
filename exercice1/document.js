@@ -1,4 +1,4 @@
-<script>
+
 var elements = document.getElementsByTagName("p");
 var length = elements.length;
 for (var i = 0; i < length; i++)
@@ -10,4 +10,3 @@ var myButton = document.getElementById("myButton");
 myButton.addEventListener("click", function(event) {
 alert(myLink.getAttribute("href"));
 });
-</script>
