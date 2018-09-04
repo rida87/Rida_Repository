@@ -1,3 +1,4 @@
+//stockage des données en local pour persistence
 function get_todos() {
     var todos = new Array;
     var todos_str = localStorage.getItem('todo'); // stocke le contenu des champs de l'écran dans 'todo'
@@ -8,13 +9,20 @@ function get_todos() {
 }
 
 
- 
+function clearall(){
+
+    localStorage.removeItem('todo');
+    show();
+    return;
+}
+
+
 function add() {
     var task = document.getElementById('task').value;  //  recupere la valeur que l'utilisateur a rentré dans input box
  
     var todos = get_todos();//  get the toto list
     todos.push(task); // ajouter tasj a todo
-    localStorage.setItem('todo', JSON.stringify(todos)); // set les champs des attributs de l'ecran avec les valeurs de todo  
+    localStorage.setItem('todo', JSON.stringify(todos)); // stocker localement la nouvelle task 
  
     show();  // update la liste todo
  
@@ -34,13 +42,28 @@ function remove() {
 }
  
 function show() {  // la fonction show va afficher la liste des champs qu'on a 
+
+    var search = document.getElementById('search').value;  //  recupere la valeur que l'utilisateur a rentré dans input box search
+
     var todos = get_todos();
  
+    if(!search){
     var html = '<ul>';
     for(var i=0; i<todos.length; i++) {
-        html += '<li>' + todos[i] + '<button class="remove" id="' + i  + '">x</button></li>'; // ok
+        html += '<li class="list-group-item" style="min-height: 60px;">' + todos[i] + '<button style="float: right;" class="btn btn-danger remove" id="' + i  + '"><i class="fas fa-times"></i></button></li>'; // ok
     };
     html += '</ul>';
+    }else{
+
+        var html = '<ul class="list-group">';
+        for(var i=0; i<todos.length; i++) {
+            if(todos[i].search(search) !== -1){
+            html += '<li class="list-group-item" style="min-height: 60px;">' + todos[i] + '<button style="float: right;" class="btn btn-danger remove" id="' + i  + '"><i class="fas fa-times"></i></button></li>'; // ok
+            }
+        };
+        html += '</ul>';
+
+    }
  
     document.getElementById('todos').innerHTML = html; //ok 
  
@@ -51,4 +74,6 @@ function show() {  // la fonction show va afficher la liste des champs qu'on a
 }
  
 document.getElementById('add').addEventListener('click', add);  
+document.getElementById('clearall').addEventListener('click', clearall);
+document.getElementById('search').addEventListener('keyup', show); 
 show();
